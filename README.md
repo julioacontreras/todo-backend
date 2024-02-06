@@ -1,6 +1,4 @@
 # Todo service
-
-# Todo service
  service - API v1.0
 
 ## 🚀 Get started
