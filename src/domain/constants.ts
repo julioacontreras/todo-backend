@@ -1,0 +1,2 @@
+export const ERROR_INVALID_PARAMS = 'TODO00001'
+export const ERROR_GETING_ITEMS = 'TODO00002'
