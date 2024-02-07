@@ -5,9 +5,10 @@ dotenv.config()
 import './infrastructure/logger'
 import './infrastructure/server-http-fastify'
 import './infrastructure/event-bus'
+import './infrastructure/mongodb-mongoose'
 
 // cqrs commands & queries
-import './routes/register-query-get-items'
+import './cqrs/query-get-items'
 
 import { startApp } from './routes'
 

@@ -1,5 +1,5 @@
 export type Item = {
     title: string,
     createdAt: number,
-    isDone: boolean
+    isCompleted: boolean
 }

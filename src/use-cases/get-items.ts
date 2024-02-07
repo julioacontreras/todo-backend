@@ -1,11 +1,7 @@
-import { Item } from 'src/domain/item'
+import { Item } from '../domain/item'
+import { repositoryNoSQL } from '../adapters/repository-no-sql'
 
 export async function getItems (): Promise<Array<Item>> {
-  return Promise.resolve([
-    {
-      title: 'asd',
-      createdAt: 2342,
-      isDone: false,
-    },
-  ])
+  console.log('get items!')
+  return await repositoryNoSQL.item.findMany({})
 }

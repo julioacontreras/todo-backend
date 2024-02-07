@@ -3,7 +3,6 @@ export interface Registry {
 }
 
 export type FunctionCallback = (arg?: unknown) => Promise<unknown>
-
 export interface Callable {
   [key: string]: FunctionCallback
 }
