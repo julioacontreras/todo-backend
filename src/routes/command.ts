@@ -4,7 +4,7 @@ import { statusHTTP } from '../adapters/server-http'
 import { getItems } from '../use-cases/get-items'
 
 import { getSchemaQueryRequest, prepareErrorParamsRequest } from '../domain/validateQueryRequest'
-import { ERROR_GETING_ITEMS } from 'src/domain/constants'
+import { ERROR_GETING_ITEMS } from '../domain/constants'
 
 export type CommandRequest = {
   nameQuery: string,

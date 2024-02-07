@@ -5,8 +5,9 @@ import { eventBus } from '../adapters/event-bus'
 import { getSchemaQueryRequest, prepareErrorParamsRequest } from '../domain/validateQueryRequest'
 
 export type QueryRequest = {
-  nameQuery: string,
-  data: unknown
+  params: {
+    nameQuery: string,
+  }
 }
 
 /**
@@ -17,7 +18,7 @@ export type QueryRequest = {
  */
 export const query = async (request: QueryRequest): Promise<HTTPReturn> => {
   const schema = getSchemaQueryRequest()
-  const { error } = schema.validate(request)
+  const { error } = schema.validate(request.params)
   if (error){
     return {
       response: prepareErrorParamsRequest(error),
@@ -25,8 +26,7 @@ export const query = async (request: QueryRequest): Promise<HTTPReturn> => {
     }
   }
 
-  const result = eventBus.emit(request.nameQuery)
-  console.log({ result })
+  const results = eventBus.emit(request.params.nameQuery)
 
-  return {} as HTTPReturn
+  return await results[0] as HTTPReturn
 }

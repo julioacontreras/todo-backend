@@ -3,15 +3,17 @@ import { command } from './command'
 import { query } from './query'
 
 export function startApp () {
+  /*
   serverHTTP.add('command', {
     callback: command,
     route: '/api/command',
     method: 'POST',
   })
+  */
 
   serverHTTP.add('query', {
     callback: query,
-    route: '/api/query',
+    route: '/api/query/:nameQuery',
     method: 'GET',
   })
 

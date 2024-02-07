@@ -1,7 +1,7 @@
-import { statusHTTP } from 'src/adapters/server-http'
-import { HTTPReturn } from 'src/adapters/server-http/types'
-import { getItems } from 'src/use-cases/get-items'
-import { ERROR_GETING_ITEMS } from 'src/domain/constants'
+import { statusHTTP } from '../adapters/server-http'
+import { HTTPReturn } from '../adapters/server-http/types'
+import { getItems } from '../use-cases/get-items'
+import { ERROR_GETING_ITEMS } from '../domain/constants'
 import { eventBus } from '../adapters/event-bus'
 
 eventBus.on('get-items', async (): Promise<HTTPReturn> => {

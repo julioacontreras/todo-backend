@@ -2,8 +2,10 @@ export interface Registry {
   unregister: () => void
 }
 
+export type FunctionCallback = (arg?: unknown) => Promise<unknown>
+
 export interface Callable {
-  [key: string]: Function
+  [key: string]: FunctionCallback
 }
 
 export interface Subscriber {
@@ -11,8 +13,8 @@ export interface Subscriber {
 }
 
 export interface EventBusAdapter {
-  emit<T>(event: string, arg?: T): unknown
-  on(event: string, callback: Function): Registry
+  emit<T>(event: string, arg?: T): unknown[]
+  on(event: string, callback: FunctionCallback): Registry
 }
 
 export let eventBus: EventBusAdapter

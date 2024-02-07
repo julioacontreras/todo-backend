@@ -7,9 +7,8 @@ import './infrastructure/server-http-fastify'
 import './infrastructure/event-bus'
 
 // cqrs commands & queries
-import './cqrs/register-get-items'
+import './routes/register-query-get-items'
 
-
-import { startApp } from './cqrs'
+import { startApp } from './routes'
 
 startApp()

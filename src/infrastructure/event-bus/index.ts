@@ -1,15 +1,21 @@
-import { EventBusAdapter, Registry, Subscriber, setEventBus } from "src/adapters/event-bus"
+import {
+  EventBusAdapter,
+  FunctionCallback,
+  Registry,
+  Subscriber,
+  setEventBus,
+} from '../../adapters/event-bus'
 
 export class EventBus implements EventBusAdapter {
   private subscribers: Subscriber
   private static nextId = 0
   private static instance?: EventBus = undefined
 
-  private constructor() {
+  private constructor () {
     this.subscribers = {}
   }
 
-  public static getInstance(): EventBus {
+  public static getInstance (): EventBus {
     if (this.instance === undefined) {
       this.instance = new EventBus()
     }
@@ -17,17 +23,20 @@ export class EventBus implements EventBusAdapter {
     return this.instance
   }
 
-  public emit<T>(event: string, arg?: T): unknown {
+  public emit<T> (event: string, arg?: T): unknown[] {
     const subscriber = this.subscribers[event]
 
     if (subscriber === undefined) {
-      return
+      throw new Error('Not exist subscriber')
     }
 
-    return Object.keys(subscriber).map((key) => subscriber[key](arg))
+    const result: unknown[] = Object.keys(subscriber).map((key) => {
+      return subscriber[key](arg)
+    })
+    return result
   }
 
-  public on(event: string, callback: Function): Registry {
+  public on (event: string, callback: FunctionCallback): Registry {
     const id = this.getNextId()
     if (!this.subscribers[event]) this.subscribers[event] = {}
 
@@ -46,7 +55,7 @@ export class EventBus implements EventBusAdapter {
     }
   }
 
-  private getNextId(): number {
+  private getNextId (): number {
     return EventBus.nextId++
   }
 }
