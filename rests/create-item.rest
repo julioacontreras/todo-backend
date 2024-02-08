@@ -1,0 +1,14 @@
+
+
+
+POST http://0.0.0.0:4010/api/command
+content-type: application/json
+
+{
+    "nameCommand": "create-item",
+    "data": {
+        "title": "xxx",
+        "createdAt": 123123,
+        "isCompleted": false
+    }
+}

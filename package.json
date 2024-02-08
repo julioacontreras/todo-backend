@@ -9,7 +9,8 @@
     "dev": "npx nodemon --config nodemon.json --quiet --exec \"npm run build:dev\"",
     "lint": "eslint --ignore-path .gitignore ./src --ext .ts",
     "lint:fix": "npm run lint -- --fix",
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "prepapre": "npx prisma generate"
   },
   "keywords": [],
   "author": "",

@@ -1,14 +1,6 @@
-import { Schema, model, connect } from 'mongoose'
-import { RepositoryNoSQL, setRepository } from '../../adapters/repository-no-sql'
-import { Item } from 'src/domain/item';
-
-const itemSchema = new Schema<Item>({
-  title: { type: String, required: true },
-  createdAt: { type: Number, required: true },
-  isCompleted: Boolean
-});
-
-const ItemModel = model<Item>('Item', itemSchema);
+import { connect } from 'mongoose'
+import { setNoSql } from '../../adapters/no-sql'
+import { useItemModel } from './item-model';
 
 run().catch(err => console.log(err));
 
@@ -17,19 +9,9 @@ async function run() {
   if (!url) {
     throw new Error('Not find database url in .env')
   }
-  
   await connect(url);
-
-  const item = new ItemModel({
-    title: 'Bill',
-    createdAt: 123,
-    isCompleted: false 
-  });
-  await item.save()
-}
-
-setRepository({
-  findMany: () => {
-    return ItemModel.find()
+  const noSql = {
+    item: useItemModel()
   }
-} as unknown as RepositoryNoSQL)
+  setNoSql(noSql)
+}

@@ -1,0 +1,13 @@
+
+
+
+POST http://0.0.0.0:4010/api/command
+content-type: application/json
+
+{
+    "nameCommand": "set-is-completed",
+    "data": {
+        "id": "65c43aebf010278b0ec7b731",
+        "isCompleted": true
+    }
+}

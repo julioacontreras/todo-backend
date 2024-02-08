@@ -25,11 +25,9 @@ export class EventBus implements EventBusAdapter {
 
   public emit<T> (event: string, arg?: T): unknown[] {
     const subscriber = this.subscribers[event]
-
     if (subscriber === undefined) {
       throw new Error('Not exist subscriber')
     }
-
     const result: unknown[] = Object.keys(subscriber).map((key) => {
       return subscriber[key](arg)
     })

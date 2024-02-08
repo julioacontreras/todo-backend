@@ -7,6 +7,7 @@ export function useRoute (callback: CallbackFunction, nameRoute: string) {
     }    
     try {
       const returnHTTP = await callback({
+        body: request.body,
         params: request.params,
         query: request.query,
       })

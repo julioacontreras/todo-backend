@@ -1,10 +1,10 @@
 import fastify from 'fastify'
 import { RoutesMap } from '../../../adapters/server-http/types'
 import { logger } from '../../../adapters/logger'
-import { createUseCases } from './create-routes'
+import { createRoutes } from './create-routes'
 import helmet from '@fastify/helmet'
 
-export async function startServer (useCases: RoutesMap): Promise<void> {
+export async function startServer (routes: RoutesMap): Promise<void> {
   const server = fastify({
     logger: true,
   })
@@ -24,9 +24,7 @@ export async function startServer (useCases: RoutesMap): Promise<void> {
     //   set Security
     // -------------------------
     await server.register(
-      helmet,
-      // Example disables the `contentSecurityPolicy` middleware but keeps the rest.
-      { contentSecurityPolicy: false }      
+      helmet     
     )
 
     // -------------------------
@@ -39,9 +37,9 @@ export async function startServer (useCases: RoutesMap): Promise<void> {
   }
 
   // -------------------------
-  //   add use cases from application
+  //   add route in the application
   // -------------------------
-  createUseCases(useCases, server)
+  createRoutes(routes, server)
 
   // -------------------------
   //   start server

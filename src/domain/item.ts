@@ -1,5 +1,6 @@
 export type Item = {
-    title: string,
-    createdAt: number,
+    id: string
+    title: string
+    createdAt: number
     isCompleted: boolean
 }
