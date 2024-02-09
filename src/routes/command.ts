@@ -4,8 +4,10 @@ import { getSchemaCommandRequest, prepareErrorParamsRequest } from '../domain/va
 import { eventBus } from '../adapters/event-bus'
 
 export type CommandRequest = {
-  body: {
+  params: {
     nameCommand: string,
+  },
+  body: {
     data: unknown
   }
 }
@@ -18,14 +20,14 @@ export type CommandRequest = {
  */
 export const command = async (request: CommandRequest): Promise<HTTPReturn> => {
   const schema = getSchemaCommandRequest()
-  const { error } = schema.validate(request.body)
+  const { error } = schema.validate(request.params)
   if (error){
     return {
       response: prepareErrorParamsRequest(error),
       code: statusHTTP.INTERNAL_SERVER_ERROR,
     }
   }
-  const results = eventBus.emit(request.body.nameCommand, request.body.data)
+  const results = eventBus.emit(request.params.nameCommand, request.body.data)
   return await results[0] as HTTPReturn
 
 }

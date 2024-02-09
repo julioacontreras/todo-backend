@@ -5,7 +5,6 @@ import { ERROR_INVALID_PARAMS } from './constants'
 export const getSchemaCommandRequest = () => {
   return Joi.object({
     nameCommand: Joi.string().required(),
-    data: Joi.object()
   })
 }
 

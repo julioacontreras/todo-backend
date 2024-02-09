@@ -5,7 +5,7 @@ import { query } from './query'
 export function startApp () {
   serverHTTP.add('command', {
     callback: command,
-    route: '/api/command',
+    route: '/api/command/:nameCommand',
     method: 'POST',
   })
 
